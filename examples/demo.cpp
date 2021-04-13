@@ -1,3 +1,4 @@
 int main() {
-    return 0;
+    int x = sum(1,3);
+    return x;
 }
