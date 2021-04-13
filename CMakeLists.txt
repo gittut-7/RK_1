@@ -21,17 +21,17 @@
 
     target_link_libraries(demo ${PROJECT_NAME})
 
-    if(BUILD_EXAMPLES)
+    if (BUILD_EXAMPLES)
         file(GLOB EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp")
-        foreach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+        foreach (EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
             get_filename_component(EXAMPLE_NAME ${EXAMPLE_SOURCE} NAME_WE)
             add_executable(${EXAMPLE_NAME} ${EXAMPLE_SOURCE})
             target_link_libraries(${EXAMPLE_NAME} RK_1)
             install(TARGETS ${EXAMPLE_NAME}
                     RUNTIME DESTINATION bin
                     )
-        endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
-    endif()
+        endforeach (EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
+    endif ()
 
     install(TARGETS RK_1
             EXPORT RK_1-config
@@ -42,12 +42,12 @@
     install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
     install(EXPORT RK_1-config DESTINATION cmake)
 
-    if(BUILD_TESTS)
+    if (BUILD_TESTS)
         enable_testing()
         add_subdirectory(third-party/gtest)
         file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
         add_executable(tests ${${PROJECT_NAME}_TEST_SOURCES})
         target_link_libraries(tests ${PROJECT_NAME} gtest_main)
         add_test(NAME tests COMMAND tests)
-    endif()
+    endif ()
 
